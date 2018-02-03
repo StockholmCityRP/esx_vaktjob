@@ -3,14 +3,14 @@ Config.DrawDistance               = 100.0
 Config.MarkerType                 = 1
 Config.MarkerSize                 = { x = 1.5, y = 1.5, z = 1.0 }
 Config.MarkerColor                = { r = 50, g = 50, b = 204 }
-Config.EnablePlayerManagement     = false
-Config.EnableArmoryManagement     = false
-Config.EnableESXIdentity          = false -- only turn this on if you are using esx_identity
+Config.EnablePlayerManagement     = true
+Config.EnableArmoryManagement     = true
+Config.EnableESXIdentity          = true  -- only turn this on if you are using esx_identity
 Config.EnableNonFreemodePeds      = false -- turn this on if you want custom peds
 Config.EnableSocietyOwnedVehicles = false
-Config.EnableLicenses             = false
+Config.EnableLicenses             = true
 Config.MaxInService               = -1
-Config.Locale                     = 'fr'
+Config.Locale                     = 'en'
 
 Config.PoliceStations = {
 
@@ -40,7 +40,7 @@ Config.PoliceStations = {
 
     AuthorizedVehicles = {
       { name = 'police',  label = 'Véhicule de patrouille 1' },
-      { name = 'police2', label = 'Véhicule de patrouille 2' },
+      { name = 'police2', label = 'Volvo V90 Polis' },
       { name = 'police3', label = 'Véhicule de patrouille 3' },
       { name = 'police4', label = 'Véhicule civil' },
       { name = 'policeb', label = 'Moto' },

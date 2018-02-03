@@ -1,4 +1,14 @@
 Locales['en'] = {
+  -- Custom
+  ['license_check'] = 'Manage licenses',
+  ['license_weapon'] = 'Weapon license',
+  ['license_dmv'] = 'DMV license',
+  ['license_drivers'] = 'Driver\'s license',
+  ['license_bike'] = 'Motorcycle licence',
+  ['license_truck'] = 'Truck license',
+  ['license_retract'] = 'Withdraw license',
+  ['del_license_1'] = 'Withdrew the',
+  ['del_license_2'] = 'license that belonged to ',
   -- Cloackroom
   ['cloakroom'] = 'locker room',
   ['citizen_wear'] = 'civilian Outfit',
@@ -10,6 +20,7 @@ Locales['en'] = {
   ['specops_wear'] = 'Spec OPS outfit',
   ['gilet_wear'] = 'orange reflective jacket',
   ['bullet_wear'] = 'bulletproof vest',
+  ['no_outfit'] = 'there\'s no uniform to fit you...',
   ['open_cloackroom'] = 'press ~INPUT_CONTEXT~ to change',
   -- Armory
   ['get_weapon'] = 'get Weapon',

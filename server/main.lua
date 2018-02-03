@@ -458,3 +458,30 @@ ESX.RegisterServerCallback('esx_policejob:getPlayerInventory', function(source, 
   })
 
 end)
+
+function ShowPermis(source,identifier)
+  local _source = source
+  local licenses = MySQL.Sync.fetchAll("SELECT * FROM user_licenses where `owner`= @owner",{['@owner'] = identifier})
+
+    for i=1, #licenses, 1 do
+
+        if(licenses[i].type =="weapon")then
+         TriggerClientEvent('esx:showNotification',_source,_U('license_weapon'))
+        end
+        if(licenses[i].type =="dmv")then
+            TriggerClientEvent('esx:showNotification',_source,_U('license_dmv'))
+        end
+        if(licenses[i].type =="drive")then
+            TriggerClientEvent('esx:showNotification',_source,_U('license_drivers'))
+        end
+        if(licenses[i].type =="drive_bike")then
+           TriggerClientEvent('esx:showNotification',_source,_U('license_bike'))
+        end
+        if(licenses[i].type =="drive_truck")then
+          TriggerClientEvent('esx:showNotification',_source,_U('license_truck'))
+        end
+
+
+    end
+
+end

@@ -89,7 +89,7 @@ function OpenCloakroomMenu()
     'default', GetCurrentResourceName(), 'cloakroom',
     {
       title    = _U('cloakroom'),
-      align    = 'top-left',
+      align    = 'bottom-right',
       elements = elements,
     },
     function(data, menu)
@@ -531,7 +531,7 @@ function OpenArmoryMenu(station)
       'default', GetCurrentResourceName(), 'armory',
       {
         title    = _U('armory'),
-        align    = 'top-left',
+        align    = 'bottom-right',
         elements = elements,
       },
       function(data, menu)
@@ -582,7 +582,7 @@ function OpenArmoryMenu(station)
       'default', GetCurrentResourceName(), 'armory',
       {
         title    = _U('armory'),
-        align    = 'top-left',
+        align    = 'bottom-right',
         elements = elements,
       },
       function(data, menu)
@@ -624,7 +624,7 @@ function OpenVehicleSpawnerMenu(station, partNum)
         'default', GetCurrentResourceName(), 'vehicle_spawner',
         {
           title    = _U('vehicle_menu'),
-          align    = 'top-left',
+          align    = 'bottom-right',
           elements = elements,
         },
         function(data, menu)
@@ -659,54 +659,32 @@ function OpenVehicleSpawnerMenu(station, partNum)
 
     local elements = {}
 
-    table.insert(elements, { label = 'Vélo', value = 'fixter' })
-    table.insert(elements, { label = 'Cruiser', value = 'police' })
-    table.insert(elements, { label = 'Sheriff Cruiser', value = 'sheriff' })
+    table.insert(elements, { label = 'Volvo XC70', value = 'sheriff2' })
+    table.insert(elements, { label = 'Volvo V70', value = 'sheriff' })
 
     if PlayerData.job.grade_name == 'officer' then
       table.insert(elements, { label = 'Interceptor', value = 'police3'})
     end
 
     if PlayerData.job.grade_name == 'sergeant' then
-      table.insert(elements, { label = 'Sheriff SUV', value = 'sheriff2'})
-      table.insert(elements, { label = 'Interceptor', value = 'police3'})
-      table.insert(elements, { label = 'Buffalo', value = 'police2'})
-      table.insert(elements, { label = 'Moto', value = 'policeb'})
-      table.insert(elements, { label = 'Bus pénitentiaire', value = 'pbus'})
-      table.insert(elements, { label = 'Bus de transport', value = 'policet'})
-      table.insert(elements, { label = 'Antiémeute', value = 'riot'})
+      table.insert(elements, { label = 'Volvo V90', value = 'police2'})
     end
 
     if PlayerData.job.grade_name == 'lieutenant' then
-      table.insert(elements, { label = 'Sheriff SUV', value = 'sheriff2'})
-      table.insert(elements, { label = 'Interceptor', value = 'police3'})
-      table.insert(elements, { label = 'Buffalo', value = 'police2'})
-      table.insert(elements, { label = 'Moto', value = 'policeb'})
-      table.insert(elements, { label = 'Bus pénitentiaire', value = 'pbus'})
-      table.insert(elements, { label = 'Bus de transport', value = 'policet'})
-      table.insert(elements, { label = 'Antiémeute', value = 'riot'})
-      table.insert(elements, { label = 'FBI', value = 'fbi'})
-      table.insert(elements, { label = 'FBI SUV', value = 'fbi2'})
+      table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+      table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
     end
 
     if PlayerData.job.grade_name == 'boss' then
-      table.insert(elements, { label = 'Sheriff SUV', value = 'sheriff2'})
-      table.insert(elements, { label = 'Interceptor', value = 'police3'})
-      table.insert(elements, { label = 'Buffalo', value = 'police2'})
-      table.insert(elements, { label = 'Moto', value = 'policeb'})
-      table.insert(elements, { label = 'Bus pénitentiaire', value = 'pbus'})
-      table.insert(elements, { label = 'Bus de transport', value = 'policet'})
-      table.insert(elements, { label = 'Antiémeute', value = 'riot'})
-      table.insert(elements, { label = 'FBI', value = 'fbi'})
-      table.insert(elements, { label = 'FBI SUV', value = 'fbi2'})
-      table.insert(elements, { label = 'Voiture Banalisée ', value = 'police4'})
+      table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+      table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
     end
 
     ESX.UI.Menu.Open(
       'default', GetCurrentResourceName(), 'vehicle_spawner',
       {
         title    = _U('vehicle_menu'),
-        align    = 'top-left',
+        align    = 'bottom-right',
         elements = elements,
       },
       function(data, menu)
@@ -783,7 +761,7 @@ function OpenPoliceActionsMenu()
     'default', GetCurrentResourceName(), 'police_actions',
     {
       title    = 'Police',
-      align    = 'top-left',
+      align    = 'bottom-right',
       elements = {
         {label = _U('citizen_interaction'), value = 'citizen_interaction'},
         {label = _U('vehicle_interaction'), value = 'vehicle_interaction'},
@@ -798,7 +776,7 @@ function OpenPoliceActionsMenu()
           'default', GetCurrentResourceName(), 'citizen_interaction',
           {
             title    = _U('citizen_interaction'),
-            align    = 'top-left',
+            align    = 'bottom-right',
             elements = {
               {label = _U('id_card'),       value = 'identity_card'},
               {label = _U('search'),        value = 'body_search'},
@@ -806,7 +784,8 @@ function OpenPoliceActionsMenu()
               {label = _U('drag'),      value = 'drag'},
               {label = _U('put_in_vehicle'),  value = 'put_in_vehicle'},
               {label = _U('out_the_vehicle'), value = 'out_the_vehicle'},
-              {label = _U('fine'),            value = 'fine'}
+              {label = _U('fine'),            value = 'fine'},
+			  {label = _U('license_check'),   value = 'license_see'}
             },
           },
           function(data2, menu2)
@@ -842,7 +821,11 @@ function OpenPoliceActionsMenu()
               if data2.current.value == 'fine' then
                 OpenFineMenu(player)
               end
-
+			  if data2.current.value == 'license_see' then
+				TriggerServerEvent('esx_policejob:license_see', GetPlayerServerId(player))
+			  end
+			  
+			  
             else
               ESX.ShowNotification(_U('no_players_nearby'))
             end
@@ -861,7 +844,7 @@ function OpenPoliceActionsMenu()
           'default', GetCurrentResourceName(), 'vehicle_interaction',
           {
             title    = _U('vehicle_interaction'),
-            align    = 'top-left',
+            align    = 'bottom-right',
             elements = {
               {label = _U('vehicle_info'), value = 'vehicle_infos'},
               {label = _U('pick_lock'),    value = 'hijack_vehicle'},
@@ -931,7 +914,7 @@ function OpenPoliceActionsMenu()
           'default', GetCurrentResourceName(), 'citizen_interaction',
           {
             title    = _U('traffic_interaction'),
-            align    = 'top-left',
+            align    = 'bottom-right',
             elements = {
               {label = _U('cone'),     value = 'prop_roadcone02a'},
               {label = _U('barrier'), value = 'prop_barrier_work06a'},
@@ -1055,7 +1038,7 @@ function OpenIdentityCardMenu(player)
         'default', GetCurrentResourceName(), 'citizen_interaction',
         {
           title    = _U('citizen_interaction'),
-          align    = 'top-left',
+          align    = 'bottom-right',
           elements = elements,
         },
         function(data, menu)
@@ -1103,7 +1086,7 @@ function OpenIdentityCardMenu(player)
         'default', GetCurrentResourceName(), 'citizen_interaction',
         {
           title    = _U('citizen_interaction'),
-          align    = 'top-left',
+          align    = 'bottom-right',
           elements = elements,
         },
         function(data, menu)
@@ -1170,7 +1153,7 @@ function OpenBodySearchMenu(player)
       'default', GetCurrentResourceName(), 'body_search',
       {
         title    = _U('search'),
-        align    = 'top-left',
+        align    = 'bottom-right',
         elements = elements,
       },
       function(data, menu)
@@ -1203,7 +1186,7 @@ function OpenFineMenu(player)
     'default', GetCurrentResourceName(), 'fine',
     {
       title    = _U('fine'),
-      align    = 'top-left',
+      align    = 'bottom-right',
       elements = {
         {label = _U('traffic_offense'),   value = 0},
         {label = _U('minor_offense'),     value = 1},
@@ -1242,7 +1225,7 @@ function OpenFineCategoryMenu(player, category)
       'default', GetCurrentResourceName(), 'fine_category',
       {
         title    = _U('fine'),
-        align    = 'top-left',
+        align    = 'bottom-right',
         elements = elements,
       },
       function(data, menu)
@@ -1290,7 +1273,7 @@ function OpenVehicleInfosMenu(vehicleData)
       'default', GetCurrentResourceName(), 'vehicle_infos',
       {
         title    = _U('vehicle_info'),
-        align    = 'top-left',
+        align    = 'bottom-right',
         elements = elements,
       },
       nil,
@@ -1319,7 +1302,7 @@ function OpenGetWeaponMenu()
       'default', GetCurrentResourceName(), 'armory_get_weapon',
       {
         title    = _U('get_weapon_menu'),
-        align    = 'top-left',
+        align    = 'bottom-right',
         elements = elements,
       },
       function(data, menu)
@@ -1361,7 +1344,7 @@ function OpenPutWeaponMenu()
     'default', GetCurrentResourceName(), 'armory_put_weapon',
     {
       title    = _U('put_weapon_menu'),
-      align    = 'top-left',
+      align    = 'bottom-right',
       elements = elements,
     },
     function(data, menu)
@@ -1406,7 +1389,7 @@ function OpenBuyWeaponsMenu(station)
       'default', GetCurrentResourceName(), 'armory_buy_weapons',
       {
         title    = _U('buy_weapon_menu'),
-        align    = 'top-left',
+        align    = 'bottom-right',
         elements = elements,
       },
       function(data, menu)
