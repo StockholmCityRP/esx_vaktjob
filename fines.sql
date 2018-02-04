@@ -42,9 +42,9 @@ INSERT INTO `fine_types` (label, amount, category) VALUES
   ('Beväpnat bankrån', 15000, 2),
   ('Våld mot merborgare', 2000, 3),
   ('Våld mot tjänsteman', 2500, 3),
-  ('Mordförsök på medborgare', 3000, 3),
-  ('Mordförsök på tjänsteman', 5000, 3),
-  ('Mord på medborgare', 10000, 3),
-  ('Mord på tjänsteman', 30000, 3),
+  ('Mordförsök på medborgare', 12500, 3),
+  ('Mordförsök på tjänsteman', 15000, 3),
+  ('Mord på medborgare', 50000, 3),
+  ('Mord på tjänsteman', 75000, 3),
   ('Ofrivilligt dödsfall', 1800, 3),
   ('Bedrägeri', 2000, 2);
