@@ -48,4 +48,3 @@ INSERT INTO `fine_types` (label, amount, category) VALUES
   ('Mord på tjänsteman', 30000, 3),
   ('Ofrivilligt dödsfall', 1800, 3),
   ('Bedrägeri', 2000, 2);
-;
