@@ -36,7 +36,7 @@ Config.PoliceStations = {
       { name = 'WEAPON_FLAREGUN',         price = 60 },
       { name = 'WEAPON_STICKYBOMB',       price = 250 },
       { name = 'GADGET_PARACHUTE',        price = 300 },
-      { name = 'WEAPON_TEARGAS',          price = 50 },
+      { name = 'WEAPON_TEARGAS',          price = 50 }
     },
 
     AuthorizedVehicles = {
