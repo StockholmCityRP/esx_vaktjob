@@ -9,6 +9,7 @@ Locales['en'] = {
   ['license_retract'] = 'Withdraw license',
   ['del_license_1'] = 'Withdrew the',
   ['del_license_2'] = 'license that belonged to ',
+  ['jail'] = 'Jail',
   -- Cloackroom
   ['cloakroom'] = 'locker room',
   ['citizen_wear'] = 'civilian Outfit',
