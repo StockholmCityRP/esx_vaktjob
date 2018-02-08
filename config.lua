@@ -35,11 +35,7 @@ Config.PoliceStations = {
       { name = 'WEAPON_FIREEXTINGUISHER', price = 120 },
       { name = 'WEAPON_FLAREGUN',         price = 60 },
       { name = 'WEAPON_STICKYBOMB',       price = 250 },
-      { name = 'GADGET_PARACHUTE',        price = 300 },
-<<<<<<< HEAD
-      { name = 'WEAPON_TEARGAS',          price = 50 }
-=======
->>>>>>> parent of ce285c6... Teargas added
+      { name = 'GADGET_PARACHUTE',        price = 300 }
     },
 
     AuthorizedVehicles = {
