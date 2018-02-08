@@ -1,4 +1,4 @@
-﻿Config                            = {}
+Config                            = {}
 Config.DrawDistance               = 100.0
 Config.MarkerType                 = 1
 Config.MarkerSize                 = { x = 1.5, y = 1.5, z = 1.0 }
@@ -36,7 +36,10 @@ Config.PoliceStations = {
       { name = 'WEAPON_FLAREGUN',         price = 60 },
       { name = 'WEAPON_STICKYBOMB',       price = 250 },
       { name = 'GADGET_PARACHUTE',        price = 300 },
+<<<<<<< HEAD
       { name = 'WEAPON_TEARGAS',          price = 50 }
+=======
+>>>>>>> parent of ce285c6... Teargas added
     },
 
     AuthorizedVehicles = {
