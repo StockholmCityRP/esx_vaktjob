@@ -27,6 +27,9 @@ local CopPed                    = 0
 ESX                             = nil
 GUI.Time                        = 0
 
+local cJ 						= false
+local unjail 					= false
+
 Citizen.CreateThread(function()
   while ESX == nil do
     TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
@@ -826,7 +829,7 @@ function OpenPoliceActionsMenu()
 				TriggerServerEvent('esx_policejob:license_see', GetPlayerServerId(player))
 			  end
 			  if data2.current.value == 'jail' then
-			  	JailPlayer(player)
+			  	JailPlayer(GetPlayerServerId(player))
 			  end
 			  
             else
@@ -1183,26 +1186,23 @@ function OpenBodySearchMenu(player)
 
 end
 
-function JailPlayer(player)
+function JailPlayer(playerID)
 	ESX.UI.Menu.Open(
-		'dialog', GetCurrentResourceName(), 'set_vehicle_owner_sell_amount',
+		'dialog', GetCurrentResourceName(), 'jail_menu',
 		{
-			title = 'title?',
+			title = _U('jail_menu_info'),
 		},
-	function (data2, menu)
-		local amount = tonumber(data2.value)
-		if amount == nil then
-			ESX.ShowNotification('error?2')
-		else
-		menu.close()
-		local closestPlayer, closestDistance = ESX.Game.GetClosestPlayer()
-			if closestPlayer == -1 or closestDistance > 3.0 then
-				ESX.ShowNotification('error?')
+		function (data2, menu)
+			local jailTime = tonumber(data2.value)
+			
+			if jailTime == nil then
+				ESX.ShowNotification(_U('invalid_amount'))
 			else
-				ESX.ShowNotification('ok! number: ' .. tonumber(data2.value))
+				menu.close()
+				TriggerClientEvent('esx_policejob:jail', playerID, jailTime * 60)
+				TriggerServerEvent('chatMessageEntered', "SYSTEM", { 0, 0, 0 }, GetPlayerName(playerID) .. " sitter nu i fängelse för ".. jailTime .." minuter")
 			end
-		end
-	end,
+		end,
 	function (data2, menu)
 		menu.close()
 	end
@@ -1448,8 +1448,6 @@ end
 function OpenGetStocksMenu()
 
   ESX.TriggerServerCallback('esx_policejob:getStockItems', function(items)
-
-    print(json.encode(items))
 
     local elements = {}
 
@@ -2149,4 +2147,108 @@ Citizen.CreateThread(function()
     end
 
   end
+end)
+
+-- jail script from esx_jailer
+RegisterNetEvent("esx_policejob:jail")
+AddEventHandler("esx_policejob:jail", function(jailTime)
+	if cJ == true then
+		return
+	end
+	local pP = GetPlayerPed(-1)
+	if DoesEntityExist(pP) then
+		
+		Citizen.CreateThread(function()
+			local playerOldLoc = GetEntityCoords(pP, true)
+			TriggerEvent('skinchanger:getSkin', function(skin)
+				if skin.sex == 0 then
+					local clothesSkin = {
+						['tshirt_1'] = 15, ['tshirt_2'] = 0,
+						['torso_1'] = 146, ['torso_2'] = 0,
+						['decals_1'] = 0, ['decals_2'] = 0,
+						['arms'] = 0,
+						['pants_1'] = 3, ['pants_2'] = 7,
+						['shoes_1'] = 12, ['shoes_2'] = 12,
+						['chain_1'] = 50, ['chain_2'] = 0
+					}
+					TriggerEvent('skinchanger:loadClothes', skin, clothesSkin)
+				else
+					local clothesSkin = {
+						['tshirt_1'] = 3, ['tshirt_2'] = 0,
+						['torso_1'] = 38, ['torso_2'] = 3,
+						['decals_1'] = 0, ['decals_2'] = 0,
+						['arms'] = 2,
+						['pants_1'] = 3, ['pants_2'] = 15,
+						['shoes_1'] = 66, ['shoes_2'] = 5,
+						['chain_1'] = 0, ['chain_2'] = 2
+					}
+					TriggerEvent('skinchanger:loadClothes', skin, clothesSkin)
+				end
+				local playerPed = GetPlayerPed(-1)
+				ClearPedBloodDamage(playerPed)
+				ResetPedVisibleDamage(playerPed)
+				ClearPedLastWeaponDamage(playerPed)
+				ResetPedMovementClipset(playerPed, 0)
+			end)
+			SetEntityCoords(pP, 459.5500793457, -994.46508789063, 23.914855957031)--{x = 459.5500793457,y = -994.46508789063,z = 23.914855957031 },
+			cJ = true
+			unjail = false
+			while jailTime > 0 and not unjail do
+				pP = GetPlayerPed(-1)
+				-- RemoveAllPedWeapons(pP, true)
+				        
+				SetEntityInvincible(pP, true)
+				if IsPedInAnyVehicle(pP, false) then
+					ClearPedTasksImmediately(pP)
+				end
+				if jailTime % 30 == 0 then
+					TriggerEvent('chatMessage', 'SYSTEM', { 0, 0, 0 }, "Det kvarstår " .. jailTime .. " sekunder tills du släpps från fängelset. (" .. jailTime / 60 .. "min)")
+				end
+				Citizen.Wait(500)
+				local pL = GetEntityCoords(pP, true)
+				local D = Vdist(459.5500793457, -994.46508789063, 23.914855957031, pL['x'], pL['y'], pL['z'])
+				if D > 2 then
+					SetEntityCoords(pP, 459.5500793457, -994.46508789063, 23.914855957031)
+					if D > 4 then
+						jailTime = jailTime + 60
+						if jailTime > 1500 then
+							jailTime = 1500
+						end
+						TriggerEvent('chatMessage', 'JUDGE', { 0, 0, 0 }, "Ditt fängelsestraff förlängdes då du försökt rymma!")
+					end
+				end
+				jailTime = jailTime - 0.5
+			end
+			TriggerServerEvent('chatMessageEntered', "SYSTEM", { 0, 0, 0 }, GetPlayerName(PlayerId()) .." släpptes från fängelset.")
+			SetEntityCoords(pP, 432.95864868164, -981.41455078125, 29.710334777832)
+			cJ = false
+			SetEntityInvincible(pP, false)
+			ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
+				local model = nil
+
+				if skin.sex == 0 then
+					model = GetHashKey("mp_m_freemode_01")
+				else
+					model = GetHashKey("mp_f_freemode_01")
+				end
+
+				RequestModel(model)
+				while not HasModelLoaded(model) do
+					RequestModel(model)
+					Citizen.Wait(1)
+				end
+
+				SetPlayerModel(PlayerId(), model)
+				SetModelAsNoLongerNeeded(model)
+
+				TriggerEvent('skinchanger:loadSkin', skin)
+				TriggerEvent('esx:restoreLoadout')
+			end)
+		end)
+	end
+end)
+
+RegisterNetEvent("esx_policejob:unjail")
+AddEventHandler("esx_policejob:unjail", function()
+	unjail = true
 end)

@@ -10,7 +10,8 @@ Locales['en'] = {
   ['del_license_1'] = 'Withdrew the',
   ['del_license_2'] = 'license that belonged to ',
   ['jail'] = 'Jail',
-  -- Cloackroom
+  ['jail_menu_info'] = 'Jail time in minutes',
+  -- Cloakroom
   ['cloakroom'] = 'locker room',
   ['citizen_wear'] = 'civilian Outfit',
   ['police_wear'] = 'police Outfit',
@@ -47,7 +48,7 @@ Locales['en'] = {
   ['put_in_vehicle'] = 'put in Vehicle',
   ['out_the_vehicle'] = 'take out of vehicle',
   ['fine'] = 'fine',
-  ['no_players_nearby'] = 'no players nearby',
+  ['no_players_nearby'] = 'There are no nearby players',
 
   ['vehicle_info'] = 'vehicle Info',
   ['pick_lock'] = 'lockpick Vehicle',
