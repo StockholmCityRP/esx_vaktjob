@@ -2246,7 +2246,7 @@ function JailPlayer(playerID, jailTime)
 			end)
 		end)
 	end
-end)
+end
 
 RegisterNetEvent("esx_policejob:unjail")
 AddEventHandler("esx_policejob:unjail", function()
