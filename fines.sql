@@ -32,9 +32,9 @@ INSERT INTO `fine_types` (label, amount, category) VALUES
   ('Bär olagligt vapen', 15000, 2),
   ('Bär inbrottsverktyg', 2000, 2),
   ('Bilstöld', 2250, 2),
-  ('Försök till att sälja olagliga substanser (droger etc.)', 1750, 2),
-  ('Tillverkande av olagliga substanser', 2000, 2),
-  ('Bär olaliga substanser ', 2500, 2),
+  ('Försök till att sälja olagliga substanser (droger etc.)', 3000, 2),
+  ('Tillverkande av olagliga substanser', 4500, 2),
+  ('Bär olaliga substanser ', 4250, 2),
   ('Kidnappat en medborgare', 3000, 2),
   ('Kidnappat en tjänsteman', 3500, 2),
   ('Rån', 40000, 2),
@@ -47,5 +47,6 @@ INSERT INTO `fine_types` (label, amount, category) VALUES
   ('Mord på medborgare', 20000, 3),
   ('Mord på tjänsteman', 30000, 3),
   ('Ofrivilligt dödsfall', 12500, 3),
+  ('Grovt innehav av olagliga substanser', 7500, 3),
   ('Bedrägeri', 10000, 2);
   
