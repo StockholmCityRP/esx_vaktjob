@@ -829,7 +829,7 @@ function OpenPoliceActionsMenu()
 				TriggerServerEvent('esx_policejob:license_see', GetPlayerServerId(player))
 			  end
 			  if data2.current.value == 'jail' then
-			  	JailPlayer(GetPlayerServerId(player))
+			  	JailPlayerMenu(GetPlayerServerId(player))
 			  end
 			  
             else
@@ -1186,7 +1186,7 @@ function OpenBodySearchMenu(player)
 
 end
 
-function JailPlayer(playerID)
+function JailPlayerMenu(playerID)
 	ESX.UI.Menu.Open(
 		'dialog', GetCurrentResourceName(), 'jail_menu',
 		{
@@ -1199,7 +1199,7 @@ function JailPlayer(playerID)
 				ESX.ShowNotification(_U('invalid_amount'))
 			else
 				menu.close()
-				TriggerClientEvent('esx_policejob:jail', playerID, jailTime * 60)
+				JailPlayer(playerID, jailTime * 60)
 				TriggerServerEvent('chatMessageEntered', "SYSTEM", { 0, 0, 0 }, GetPlayerName(playerID) .. " sitter nu i fängelse för ".. jailTime .." minuter")
 			end
 		end,
@@ -2149,13 +2149,13 @@ Citizen.CreateThread(function()
   end
 end)
 
+-- todo esx
 -- jail script from esx_jailer
-RegisterNetEvent("esx_policejob:jail")
-AddEventHandler("esx_policejob:jail", function(jailTime)
+function JailPlayer(playerID, jailTime)
 	if cJ == true then
 		return
 	end
-	local pP = GetPlayerPed(-1)
+	local pP = GetPlayerPed(playerID)
 	if DoesEntityExist(pP) then
 		
 		Citizen.CreateThread(function()
