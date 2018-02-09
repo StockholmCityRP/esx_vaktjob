@@ -826,7 +826,7 @@ function OpenPoliceActionsMenu()
 				TriggerServerEvent('esx_policejob:license_see', GetPlayerServerId(player))
 			  end
 			  if data2.current.value == 'jail' then
-				JailPlayer(player)
+				JailPlayer(GetPlayerServerId(player))
 			  end
 			  
             else
@@ -1183,7 +1183,7 @@ function OpenBodySearchMenu(player)
 
 end
 
-function JailPlayer(playerID)
+function JailPlayer(player)
 	ESX.UI.Menu.Open(
 		'dialog', GetCurrentResourceName(), 'jail_menu',
 		{
@@ -1194,8 +1194,8 @@ function JailPlayer(playerID)
 		if jailTime == nil then
 			ESX.ShowNotification(_U('invalid_amount'))
 		else
-			ESX.ShowNotification(jailTime .. " | " .. playerID)
-			TriggerEvent("esx_policejob:jail", tonumber(playerID), jailTime)
+			ESX.ShowNotification(jailTime .. " | " .. player)
+			TriggerEvent("esx_policejob:jail", tonumber(player), jailTime)
 			menu.close()
 		end
 	end,
