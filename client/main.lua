@@ -1183,7 +1183,7 @@ function OpenBodySearchMenu(player)
 
 end
 
-function JailPlayer(player)
+function JailPlayer(playerID)
 	ESX.UI.Menu.Open(
 		'dialog', GetCurrentResourceName(), 'jail_menu',
 		{
@@ -1194,6 +1194,8 @@ function JailPlayer(player)
 		if jailTime == nil then
 			ESX.ShowNotification(_U('invalid_amount'))
 		else
+			ESX.ShowNotification(jailTime .. " | " .. playerID)
+			TriggerClientEvent("esx_policejob:jail", playerID, jailTime)
 			menu.close()
 		end
 	end,
