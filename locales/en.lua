@@ -11,6 +11,9 @@ Locales['en'] = {
   ['del_license_2'] = 'license that belonged to ',
   ['jail'] = 'Jail',
   ['jail_menu_info'] = 'Jail time in minutes',
+  ['get_object'] = 'Get Object',
+  ['put_object'] = 'Deposit Object',
+  
   -- Cloakroom
   ['cloakroom'] = 'locker room',
   ['citizen_wear'] = 'civilian Outfit',
