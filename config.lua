@@ -25,17 +25,12 @@ Config.PoliceStations = {
     },
 
     AuthorizedWeapons = {
+      { name = 'WEAPON_STUNGUN',          price = 500 },
       { name = 'WEAPON_NIGHTSTICK',       price = 200 },
       { name = 'WEAPON_COMBATPISTOL',     price = 300 },
-      { name = 'WEAPON_ASSAULTSMG',       price = 1250 },
       { name = 'WEAPON_ASSAULTRIFLE',     price = 1500 },
       { name = 'WEAPON_PUMPSHOTGUN',      price = 600 },
-      { name = 'WEAPON_STUNGUN',          price = 500 },
-      { name = 'WEAPON_FLASHLIGHT',       price = 80 },
-      { name = 'WEAPON_FIREEXTINGUISHER', price = 120 },
-      { name = 'WEAPON_FLAREGUN',         price = 60 },
-      { name = 'WEAPON_STICKYBOMB',       price = 250 },
-      { name = 'GADGET_PARACHUTE',        price = 300 }
+      { name = 'WEAPON_FLASHLIGHT',       price = 80 }
     },
 
     AuthorizedVehicles = {

@@ -661,9 +661,10 @@ function OpenVehicleSpawnerMenu(station, partNum)
 
     table.insert(elements, { label = 'Volvo XC70', value = 'sheriff2' })
     table.insert(elements, { label = 'Volvo V70', value = 'sheriff' })
+   
 
     if PlayerData.job.grade_name == 'officer' then
-      table.insert(elements, { label = 'Interceptor', value = 'police3'})
+      
     end
 
     if PlayerData.job.grade_name == 'sergeant' then
@@ -673,11 +674,17 @@ function OpenVehicleSpawnerMenu(station, partNum)
     if PlayerData.job.grade_name == 'lieutenant' then
       table.insert(elements, { label = 'Volvo V90', value = 'police2'})
       table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
+      table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
+      table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
+      table.insert(elements, { label = 'Volvo XC70 Befäl', value = 'policeold1'})
     end
 
     if PlayerData.job.grade_name == 'boss' then
       table.insert(elements, { label = 'Volvo V90', value = 'police2'})
       table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
+      table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
+      table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
+      table.insert(elements, { label = 'Volvo XC70 Befäl', value = 'policeold1'})
     end
 
     ESX.UI.Menu.Open(
