@@ -1194,7 +1194,7 @@ function JailPlayer(player)
 		if jailTime == nil then
 			ESX.ShowNotification(_U('invalid_amount'))
 		else
-			TriggerServerEvent("esx_jailer:sendToJail", player, jailTime)
+			TriggerServerEvent("esx_jailer:sendToJail", player, jailTime * 60)
 			menu.close()
 		end
 	end,
