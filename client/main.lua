@@ -517,8 +517,8 @@ function OpenArmoryMenu(station)
     local elements = {
       {label = _U('get_weapon'), value = 'get_weapon'},
       {label = _U('put_weapon'), value = 'put_weapon'},
-      {label = 'Prendre Objet',  value = 'get_stock'},
-      {label = 'Déposer objet',  value = 'put_stock'}
+      {label = _U('get_object'), value = 'get_stock'},
+      {label = _U('put_object'), value = 'put_stock'}
     }
 
     if PlayerData.job.grade_name == 'boss' then
@@ -792,7 +792,8 @@ function OpenPoliceActionsMenu()
               {label = _U('put_in_vehicle'),  value = 'put_in_vehicle'},
               {label = _U('out_the_vehicle'), value = 'out_the_vehicle'},
               {label = _U('fine'),            value = 'fine'},
-			  {label = _U('license_check'),   value = 'license_see'}
+			  --{label = _U('license_check'),   value = 'license_see'},
+			  {label = _U('jail'),			  value = 'jail'}
             },
           },
           function(data2, menu2)
@@ -831,7 +832,9 @@ function OpenPoliceActionsMenu()
 			  if data2.current.value == 'license_see' then
 				TriggerServerEvent('esx_policejob:license_see', GetPlayerServerId(player))
 			  end
-			  
+			  if data2.current.value == 'jail' then
+				JailPlayer(GetPlayerServerId(player))
+			  end
 			  
             else
               ESX.ShowNotification(_U('no_players_nearby'))
@@ -1187,6 +1190,27 @@ function OpenBodySearchMenu(player)
 
 end
 
+function JailPlayer(player)
+	ESX.UI.Menu.Open(
+		'dialog', GetCurrentResourceName(), 'jail_menu',
+		{
+			title = _U('jail_menu_info'),
+		},
+	function (data2, menu)
+		local jailTime = tonumber(data2.value)
+		if jailTime == nil then
+			ESX.ShowNotification(_U('invalid_amount'))
+		else
+			TriggerServerEvent("esx_jailer:sendToJail", player, jailTime * 60)
+			menu.close()
+		end
+	end,
+	function (data2, menu)
+		menu.close()
+	end
+	)
+end
+
 function OpenFineMenu(player)
 
   ESX.UI.Menu.Open(
@@ -1427,7 +1451,7 @@ function OpenGetStocksMenu()
 
   ESX.TriggerServerCallback('esx_policejob:getStockItems', function(items)
 
-    print(json.encode(items))
+    --print(json.encode(items))
 
     local elements = {}
 
