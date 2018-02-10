@@ -664,7 +664,7 @@ function OpenVehicleSpawnerMenu(station, partNum)
    
 
     if PlayerData.job.grade_name == 'officer' then
-      table.insert(elements, { label = 'Interceptor', value = 'police3'})
+      
     end
 
     if PlayerData.job.grade_name == 'sergeant' then
