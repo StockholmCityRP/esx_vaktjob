@@ -661,7 +661,6 @@ function OpenVehicleSpawnerMenu(station, partNum)
 
     
     table.insert(elements, { label = 'Volvo V70', value = 'sheriff' })
-    table.insert(elements, { label = 'Volkswagen Passat', value = 'sheriff2' })
    
 
     if PlayerData.job.grade_name == 'officer' then
