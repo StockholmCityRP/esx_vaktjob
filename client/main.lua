@@ -676,14 +676,12 @@ function OpenVehicleSpawnerMenu(station, partNum)
       table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
       table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
       table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
-      table.insert(elements, { label = 'Mercedes Sprinter SWAT', value = 'policet'})
      
     if PlayerData.job.grade_name == 'boss' then
       table.insert(elements, { label = 'Volvo V90', value = 'police2'})
       table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
       table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
       table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
-      table.insert(elements, { label = 'Mercedes Sprinter SWAT', value = 'policet'})
      
 
     ESX.UI.Menu.Open(
