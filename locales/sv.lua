@@ -1,5 +1,5 @@
 Locales['sv'] = {
-  -- Cloackroom
+  -- Cloakroom
   ['cloakroom'] = 'omklädnings rum',
   ['citizen_wear'] = 'civil kläder',
   ['police_wear'] = 'polis kläder',
@@ -9,6 +9,8 @@ Locales['sv'] = {
   ['statepd_wear'] = 'Statliga poliskläder',
   ['specops_wear'] = 'SÄPO kläder',
   ['gilet_wear'] = 'orange reflex jacka',
+  ['swat_wear'] = 'Insatsstyrka',
+  ['cop_wear'] = 'Polisuniform',
   ['bullet_wear'] = 'skottsäker väst',
   ['open_cloackroom'] = 'tryck ~INPUT_CONTEXT~ för att ändra',
   -- Armory

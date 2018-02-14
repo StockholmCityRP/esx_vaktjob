@@ -6,11 +6,10 @@ Config.MarkerColor                = { r = 50, g = 50, b = 204 }
 Config.EnablePlayerManagement     = true
 Config.EnableArmoryManagement     = true
 Config.EnableESXIdentity          = true  -- only turn this on if you are using esx_identity
-Config.EnableNonFreemodePeds      = true -- turn this on if you want custom peds
 Config.EnableSocietyOwnedVehicles = false
 Config.EnableLicenses             = true
 Config.MaxInService               = -1
-Config.Locale                     = 'en'
+Config.Locale                     = 'sv'
 
 Config.PoliceStations = {
 
