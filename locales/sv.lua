@@ -1,4 +1,9 @@
 Locales['sv'] = {
+  -- Custom
+  ['jail'] = 'Fängelse',
+  ['jail_menu_info'] = 'Fängelsetid i minuter',
+  ['get_object'] = 'ta objekt',
+  ['put_object'] = 'sätt in objekt',
   -- Cloakroom
   ['cloakroom'] = 'omklädnings rum',
   ['citizen_wear'] = 'civil kläder',

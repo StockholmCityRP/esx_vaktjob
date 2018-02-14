@@ -680,7 +680,6 @@ function OpenVehicleSpawnerMenu(station, partNum)
 	if PlayerData.job.grade_name == 'sergeant' then
 		table.insert(elements, { label = 'Volvo V70', value = 'sheriff'})
 		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
-		table.insert(elements, { label = 'Volvo XC70', value = 'sheriff2'})
 	end
 	
 	
@@ -688,7 +687,6 @@ function OpenVehicleSpawnerMenu(station, partNum)
 	if PlayerData.job.grade_name == 'intendent' then
 		table.insert(elements, { label = 'Volvo V70', value = 'sheriff'})
 		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
-		table.insert(elements, { label = 'Volvo XC70', value = 'sheriff2'})
 	end
 
 	if PlayerData.job.grade_name == 'lieutenant' then
@@ -697,9 +695,8 @@ function OpenVehicleSpawnerMenu(station, partNum)
 		table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
 		
 		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+		table.insert(elements, { label = 'Volvo V90 Unmarked', value = 'fbi2'})
 		table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
-		
-		table.insert(elements, { label = 'Volvo XC70', value = 'sheriff2'})
 	end
 	
 	if PlayerData.job.grade_name == 'chef' then
@@ -708,9 +705,8 @@ function OpenVehicleSpawnerMenu(station, partNum)
 		table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
 		
 		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+		table.insert(elements, { label = 'Volvo V90 Unmarked', value = 'fbi2'})
 		table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
-		
-		table.insert(elements, { label = 'Volvo XC70', value = 'sheriff2'})
 	end
 	
 	if PlayerData.job.grade_name == 'boss' then
@@ -719,9 +715,8 @@ function OpenVehicleSpawnerMenu(station, partNum)
 		table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
 		
 		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+		table.insert(elements, { label = 'Volvo V90 Unmarked', value = 'fbi2'})
 		table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
-		
-		table.insert(elements, { label = 'Volvo XC70', value = 'sheriff2'})
 	end
 
     ESX.UI.Menu.Open(
