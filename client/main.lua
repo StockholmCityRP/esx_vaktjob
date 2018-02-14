@@ -55,33 +55,40 @@ function OpenCloakroomMenu()
   }
 
   if PlayerData.job.grade_name == 'recruit' then
-    table.insert(elements, {label = _U('police_wear'), value = 'cadet_wear'})
+	table.insert(elements, {label = _U('cop_wear'), value = 'cop_wear_freemode'})
   end
 
   if PlayerData.job.grade_name == 'officer' then
-    table.insert(elements, {label = _U('police_wear'), value = 'police_wear'})
+	table.insert(elements, {label = _U('cop_wear'), value = 'cop_wear_freemode'})
   end
 
   if PlayerData.job.grade_name == 'sergeant' then
-    table.insert(elements, {label = _U('police_wear'), value = 'sergeant_wear'})
+	table.insert(elements, {label = _U('cop_wear'), value = 'cop_wear_freemode'})
+	table.insert(elements, {label = _U('swat_wear'), value = 'swat_wear_freemode'})
   end
 
+  if PlayerData.job.grade_name == 'intendent' then
+	table.insert(elements, {label = _U('cop_wear'), value = 'cop_wear_freemode'})
+	table.insert(elements, {label = _U('swat_wear'), value = 'swat_wear_freemode'})
+  end
+  
   if PlayerData.job.grade_name == 'lieutenant' then
-    table.insert(elements, {label = _U('police_wear'), value = 'lieutenant_wear'})
+	table.insert(elements, {label = _U('cop_wear'), value = 'cop_wear_freemode'})
+	table.insert(elements, {label = _U('swat_wear'), value = 'swat_wear_freemode'})
   end
-
+  
+  if PlayerData.job.grade_name == 'chef' then
+	table.insert(elements, {label = _U('cop_wear'), value = 'cop_wear_freemode'})
+	table.insert(elements, {label = _U('swat_wear'), value = 'swat_wear_freemode'})
+  end
+  
   if PlayerData.job.grade_name == 'boss' then
-    table.insert(elements, {label = _U('police_wear'), value = 'commandant_wear'})
+	table.insert(elements, {label = _U('cop_wear'), value = 'cop_wear_freemode'})
+	table.insert(elements, {label = _U('swat_wear'), value = 'swat_wear_freemode'})
   end
 
-  if Config.EnableNonFreemodePeds then
-    table.insert(elements, {label = _U('sheriff_wear'), value = 'sheriff_wear_freemode'})
-    table.insert(elements, {label = _U('lieutenant_wear'), value = 'lieutenant_wear_freemode'})
-    table.insert(elements, {label = _U('commandant_wear'), value = 'commandant_wear_freemode'})
-  end
-
-  table.insert(elements, {label = _U('bullet_wear'), value = 'bullet_wear'})
-  table.insert(elements, {label = _U('gilet_wear'), value = 'gilet_wear'})
+  table.insert(elements, {label = _U('bullet_wear'), value = 'bullet_wear'}) -- bulletproof vest
+  --table.insert(elements, {label = _U('gilet_wear'), value = 'gilet_wear'}) orange vest
 
   ESX.UI.Menu.CloseAll()
 
@@ -431,7 +438,7 @@ function OpenCloakroomMenu()
         end)
       end
 
-      if data.current.value == 'lieutenant_wear_freemode' then
+      if data.current.value == 'swat_wear_freemode' then
 
         ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 
@@ -461,13 +468,13 @@ function OpenCloakroomMenu()
 
         end)
       end
-
-      if data.current.value == 'commandant_wear_freemode' then
+	  
+	  if data.current.value == 'cop_wear_freemode' then
 
         ESX.TriggerServerCallback('esx_skin:getPlayerSkin', function(skin, jobSkin)
 
         if skin.sex == 0 then
-          local model = GetHashKey("s_m_y_swat_01")
+          local model = GetHashKey("s_m_y_cop_01")
 
           RequestModel(model)
           while not HasModelLoaded(model) do
@@ -478,7 +485,7 @@ function OpenCloakroomMenu()
           SetPlayerModel(PlayerId(), model)
           SetModelAsNoLongerNeeded(model)
       else
-          local model = GetHashKey("s_m_y_swat_01")
+          local model = GetHashKey("s_m_y_cop_01")
 
           RequestModel(model)
           while not HasModelLoaded(model) do
@@ -657,31 +664,56 @@ function OpenVehicleSpawnerMenu(station, partNum)
 
   else
 
-    local elements = {}
+	local elements = {}
 
-    
-    table.insert(elements, { label = 'Volvo V70', value = 'sheriff' })
-   
-
-    if PlayerData.job.grade_name == 'officer' then
-      
-    end
-
-    if PlayerData.job.grade_name == 'sergeant' then
-      table.insert(elements, { label = 'Volvo V90', value = 'police2'})
-    end
-
-    if PlayerData.job.grade_name == 'lieutenant' then
-      table.insert(elements, { label = 'Volvo V90', value = 'police2'})
-      table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
-      table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
-      table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
+	
+	
+	if PlayerData.job.grade_name == 'recruit' then
+		
 	end
-    if PlayerData.job.grade_name == 'boss' then
-      table.insert(elements, { label = 'Volvo V90', value = 'police2'})
-      table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
-      table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
-      table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
+	
+	if PlayerData.job.grade_name == 'officer' then
+		table.insert(elements, { label = 'Volvo V70', value = 'sheriff'})
+		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+	end
+
+	if PlayerData.job.grade_name == 'sergeant' then
+		table.insert(elements, { label = 'Volvo V70', value = 'sheriff'})
+		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+	end
+	
+	
+	
+	if PlayerData.job.grade_name == 'intendent' then
+		table.insert(elements, { label = 'Volvo V70', value = 'sheriff'})
+		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+	end
+
+	if PlayerData.job.grade_name == 'lieutenant' then
+		table.insert(elements, { label = 'Volvo V70', value = 'sheriff' })
+		table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
+		table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
+		
+		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+		table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
+	end
+	
+	if PlayerData.job.grade_name == 'chef' then
+		table.insert(elements, { label = 'Volvo V70', value = 'sheriff' })
+		table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
+		table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
+		
+		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+		table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
+	end
+	
+	if PlayerData.job.grade_name == 'boss' then
+		table.insert(elements, { label = 'Volvo V70', value = 'sheriff' })
+		table.insert(elements, { label = 'Volvo V70 Unmarked', value = 'fbi'})
+		table.insert(elements, { label = 'Volvo V70 Befäl', value = 'police'})
+		
+		table.insert(elements, { label = 'Volvo V90', value = 'police2'})
+		table.insert(elements, { label = 'Volvo V90 Befäl', value = 'police3'})
 	end
 
     ESX.UI.Menu.Open(
@@ -1728,7 +1760,7 @@ end)
 
 RegisterNetEvent('esx_policejob:drag')
 AddEventHandler('esx_policejob:drag', function(cop)
-  TriggerServerEvent('esx:clientLog', 'starting dragging')
+  --TriggerServerEvent('esx:clientLog', 'starting dragging')
   IsDragged = not IsDragged
   CopPed = tonumber(cop)
 end)
