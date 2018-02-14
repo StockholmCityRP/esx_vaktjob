@@ -1728,7 +1728,7 @@ end)
 
 RegisterNetEvent('esx_policejob:drag')
 AddEventHandler('esx_policejob:drag', function(cop)
-  TriggerServerEvent('esx:clientLog', 'starting dragging')
+  --TriggerServerEvent('esx:clientLog', 'starting dragging')
   IsDragged = not IsDragged
   CopPed = tonumber(cop)
 end)
