@@ -527,10 +527,16 @@ function OpenArmoryMenu(station)
       {label = _U('get_object'), value = 'get_stock'},
       {label = _U('put_object'), value = 'put_stock'}
     }
-
-    if PlayerData.job.grade_name == 'boss' then
-      table.insert(elements, {label = _U('buy_weapons'), value = 'buy_weapons'})
-    end
+	
+	local gradeName = PlayerData.job.grade_name
+	
+	if gradeName == 'lieutenant' then
+		table.insert(elements, {label = _U('buy_weapons'), value = 'buy_weapons'})
+	elseif gradeName == 'chef' then
+		table.insert(elements, {label = _U('buy_weapons'), value = 'buy_weapons'})
+	elseif gradeName == 'boss' then
+		table.insert(elements, {label = _U('buy_weapons'), value = 'buy_weapons'})
+	end
 
     ESX.UI.Menu.CloseAll()
 
