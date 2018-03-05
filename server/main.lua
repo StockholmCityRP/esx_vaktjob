@@ -3,20 +3,20 @@ ESX = nil
 TriggerEvent('esx:getSharedObject', function(obj) ESX = obj end)
 
 if Config.MaxInService ~= -1 then
-  TriggerEvent('esx_service:activateService', 'police', Config.MaxInService)
+  TriggerEvent('esx_service:activateService', 'vakt', Config.MaxInService)
 end
 
-TriggerEvent('esx_phone:registerNumber', 'police', _U('alert_police'), true, true)
-TriggerEvent('esx_society:registerSociety', 'police', 'Police', 'society_police', 'society_police', 'society_police', {type = 'public'})
+--TriggerEvent('esx_phone:registerNumber', 'police', _U('alert_police'), true, true)
+--TriggerEvent('esx_society:registerSociety', 'police', 'Police', 'society_police', 'society_police', 'society_police', {type = 'public'})
 
-RegisterServerEvent('esx_policejob:giveWeapon')
-AddEventHandler('esx_policejob:giveWeapon', function(weapon, ammo)
+RegisterServerEvent('esx_vaktjob:giveWeapon')
+AddEventHandler('esx_vaktjob:giveWeapon', function(weapon, ammo)
   local xPlayer = ESX.GetPlayerFromId(source)
   xPlayer.addWeapon(weapon, ammo)
 end)
 
-RegisterServerEvent('esx_policejob:confiscatePlayerItem')
-AddEventHandler('esx_policejob:confiscatePlayerItem', function(target, itemType, itemName, amount)
+RegisterServerEvent('esx_vaktjob:confiscatePlayerItem')
+AddEventHandler('esx_vaktjob:confiscatePlayerItem', function(target, itemType, itemName, amount)
 
   local sourceXPlayer = ESX.GetPlayerFromId(source)
   local targetXPlayer = ESX.GetPlayerFromId(target)
@@ -60,33 +60,33 @@ AddEventHandler('esx_policejob:confiscatePlayerItem', function(target, itemType,
 
 end)
 
-RegisterServerEvent('esx_policejob:handcuff')
-AddEventHandler('esx_policejob:handcuff', function(target)
-  TriggerClientEvent('esx_policejob:handcuff', target)
+RegisterServerEvent('esx_vaktjob:handcuff')
+AddEventHandler('esx_vaktjob:handcuff', function(target)
+  TriggerClientEvent('esx_vaktjob:handcuff', target)
 end)
 
-RegisterServerEvent('esx_policejob:drag')
-AddEventHandler('esx_policejob:drag', function(target)
+RegisterServerEvent('esx_vaktjob:drag')
+AddEventHandler('esx_vaktjob:drag', function(target)
   local _source = source
-  TriggerClientEvent('esx_policejob:drag', target, _source)
+  TriggerClientEvent('esx_vaktjob:drag', target, _source)
 end)
 
-RegisterServerEvent('esx_policejob:putInVehicle')
-AddEventHandler('esx_policejob:putInVehicle', function(target)
-  TriggerClientEvent('esx_policejob:putInVehicle', target)
+RegisterServerEvent('esx_vaktjob:putInVehicle')
+AddEventHandler('esx_vaktjob:putInVehicle', function(target)
+  TriggerClientEvent('esx_vaktjob:putInVehicle', target)
 end)
 
-RegisterServerEvent('esx_policejob:OutVehicle')
-AddEventHandler('esx_policejob:OutVehicle', function(target)
-    TriggerClientEvent('esx_policejob:OutVehicle', target)
+RegisterServerEvent('esx_vaktjob:OutVehicle')
+AddEventHandler('esx_vaktjob:OutVehicle', function(target)
+    TriggerClientEvent('esx_vaktjob:OutVehicle', target)
 end)
 
-RegisterServerEvent('esx_policejob:getStockItem')
-AddEventHandler('esx_policejob:getStockItem', function(itemName, count)
+RegisterServerEvent('esx_vaktjob:getStockItem')
+AddEventHandler('esx_vaktjob:getStockItem', function(itemName, count)
 
   local xPlayer = ESX.GetPlayerFromId(source)
 
-  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_police', function(inventory)
+  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_vakt', function(inventory)
 
     local item = inventory.getItem(itemName)
 
@@ -103,12 +103,12 @@ AddEventHandler('esx_policejob:getStockItem', function(itemName, count)
 
 end)
 
-RegisterServerEvent('esx_policejob:putStockItems')
-AddEventHandler('esx_policejob:putStockItems', function(itemName, count)
+RegisterServerEvent('esx_vaktjob:putStockItems')
+AddEventHandler('esx_vaktjob:putStockItems', function(itemName, count)
 
   local xPlayer = ESX.GetPlayerFromId(source)
 
-  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_police', function(inventory)
+  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_vakt', function(inventory)
 
     local item = inventory.getItem(itemName)
 
@@ -125,7 +125,7 @@ AddEventHandler('esx_policejob:putStockItems', function(itemName, count)
 
 end)
 
-ESX.RegisterServerCallback('esx_policejob:getOtherPlayerData', function(source, cb, target)
+ESX.RegisterServerCallback('esx_vaktjob:getOtherPlayerData', function(source, cb, target)
 
   if Config.EnableESXIdentity then
 
@@ -206,7 +206,7 @@ ESX.RegisterServerCallback('esx_policejob:getOtherPlayerData', function(source, 
 
 end)
 
-ESX.RegisterServerCallback('esx_policejob:getFineList', function(source, cb, category)
+ESX.RegisterServerCallback('esx_vaktjob:getFineList', function(source, cb, category)
 
   MySQL.Async.fetchAll(
     'SELECT * FROM fine_types WHERE category = @category',
@@ -220,7 +220,7 @@ ESX.RegisterServerCallback('esx_policejob:getFineList', function(source, cb, cat
 
 end)
 
-ESX.RegisterServerCallback('esx_policejob:getVehicleInfos', function(source, cb, plate)
+ESX.RegisterServerCallback('esx_vaktjob:getVehicleInfos', function(source, cb, plate)
 
   if Config.EnableESXIdentity then
 
@@ -332,9 +332,9 @@ ESX.RegisterServerCallback('esx_policejob:getVehicleInfos', function(source, cb,
 
 end)
 
-ESX.RegisterServerCallback('esx_policejob:getArmoryWeapons', function(source, cb)
+ESX.RegisterServerCallback('esx_vaktjob:getArmoryWeapons', function(source, cb)
 
-  TriggerEvent('esx_datastore:getSharedDataStore', 'society_police', function(store)
+  TriggerEvent('esx_datastore:getSharedDataStore', 'society_vakt', function(store)
 
     local weapons = store.get('weapons')
 
@@ -348,13 +348,13 @@ ESX.RegisterServerCallback('esx_policejob:getArmoryWeapons', function(source, cb
 
 end)
 
-ESX.RegisterServerCallback('esx_policejob:addArmoryWeapon', function(source, cb, weaponName)
+ESX.RegisterServerCallback('esx_vaktjob:addArmoryWeapon', function(source, cb, weaponName)
 
   local xPlayer = ESX.GetPlayerFromId(source)
 
   xPlayer.removeWeapon(weaponName)
 
-  TriggerEvent('esx_datastore:getSharedDataStore', 'society_police', function(store)
+  TriggerEvent('esx_datastore:getSharedDataStore', 'society_vakt', function(store)
 
     local weapons = store.get('weapons')
 
@@ -386,13 +386,13 @@ ESX.RegisterServerCallback('esx_policejob:addArmoryWeapon', function(source, cb,
 
 end)
 
-ESX.RegisterServerCallback('esx_policejob:removeArmoryWeapon', function(source, cb, weaponName)
+ESX.RegisterServerCallback('esx_vaktjob:removeArmoryWeapon', function(source, cb, weaponName)
 
   local xPlayer = ESX.GetPlayerFromId(source)
 
   xPlayer.addWeapon(weaponName, 1000)
 
-  TriggerEvent('esx_datastore:getSharedDataStore', 'society_police', function(store)
+  TriggerEvent('esx_datastore:getSharedDataStore', 'society_vakt', function(store)
 
     local weapons = store.get('weapons')
 
@@ -425,9 +425,9 @@ ESX.RegisterServerCallback('esx_policejob:removeArmoryWeapon', function(source, 
 end)
 
 
-ESX.RegisterServerCallback('esx_policejob:buy', function(source, cb, amount)
+ESX.RegisterServerCallback('esx_vaktjob:buy', function(source, cb, amount)
 
-  TriggerEvent('esx_addonaccount:getSharedAccount', 'society_police', function(account)
+  TriggerEvent('esx_addonaccount:getSharedAccount', 'society_vakt', function(account)
 
     if account.money >= amount then
       account.removeMoney(amount)
@@ -440,15 +440,15 @@ ESX.RegisterServerCallback('esx_policejob:buy', function(source, cb, amount)
 
 end)
 
-ESX.RegisterServerCallback('esx_policejob:getStockItems', function(source, cb)
+ESX.RegisterServerCallback('esx_vaktjob:getStockItems', function(source, cb)
 
-  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_police', function(inventory)
+  TriggerEvent('esx_addoninventory:getSharedInventory', 'society_vakt', function(inventory)
     cb(inventory.items)
   end)
 
 end)
 
-ESX.RegisterServerCallback('esx_policejob:getPlayerInventory', function(source, cb)
+ESX.RegisterServerCallback('esx_vaktjob:getPlayerInventory', function(source, cb)
 
   local xPlayer = ESX.GetPlayerFromId(source)
   local items   = xPlayer.inventory
