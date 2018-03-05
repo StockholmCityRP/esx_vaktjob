@@ -1,5 +1,5 @@
-# fxserver-esx_policejob
-FXServer ESX Police Job
+# fxserver-esx_vaktjob
+FXServer ESX Vakt Job
 
 [REQUIREMENTS]
 
@@ -20,12 +20,12 @@ FXServer ESX Police Job
 ```
 git clone https://github.com/FXServer-ESX/fxserver-esx_policejob esx_policejob
 ```
-3) Import esx_policejob.sql in your database
+3) Import esx_vaktjob.sql in your database
 
 4) Add this in your server.cfg :
 
 ```
-start esx_policejob
+start esx_vaktjob
 ```
 5) * If you want player management you have to set Config.EnablePlayerManagement to true in config.lua
    * If you want armory management you have to set Config.EnableArmoryManagement to true in config.lua
