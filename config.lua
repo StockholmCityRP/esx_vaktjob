@@ -15,7 +15,7 @@ Config.PoliceStations = {
 
   LSPD = {
 
-    Blip = {
+    --Blip = {
       Pos     = { x = 425.130, y = -979.558, z = 30.711 },
       Sprite  = 60,
       Display = 4,
@@ -24,40 +24,40 @@ Config.PoliceStations = {
     },
 
     AuthorizedWeapons = {
-      { name = 'WEAPON_STUNGUN',          price = 500 },
-      { name = 'WEAPON_COMBATPISTOL',     price = 300 },
-      { name = 'WEAPON_ASSAULTRIFLE',     price = 1500 },
-      { name = 'WEAPON_PUMPSHOTGUN',      price = 600 },
+      --{ name = 'WEAPON_STUNGUN',          price = 500 },
+      --{ name = 'WEAPON_COMBATPISTOL',     price = 300 },
+      --{ name = 'WEAPON_ASSAULTRIFLE',     price = 1500 },
+      --{ name = 'WEAPON_PUMPSHOTGUN',      price = 600 },
       { name = 'WEAPON_FLASHLIGHT',       price = 80 },
       { name = 'WEAPON_NIGHTSTICK',       price = 200 }
     },
 
     AuthorizedVehicles = {
       { name = 'police',  label = 'Véhicule de patrouille 1' },
-      { name = 'police2', label = 'Volvo V90 Polis' },
-      { name = 'police3', label = 'Véhicule de patrouille 3' },
-      { name = 'police4', label = 'Véhicule civil' },
-      { name = 'policeb', label = 'Moto' },
-      { name = 'policet', label = 'Van de transport' },
+      --{ name = 'police2', label = 'Volvo V90 Polis' },
+      --{ name = 'police3', label = 'Véhicule de patrouille 3' },
+      --{ name = 'police4', label = 'Véhicule civil' },
+      --{ name = 'policeb', label = 'Moto' },
+      --{ name = 'policet', label = 'Van de transport' },
     },
 
-    Cloakrooms = {
-      { x = 452.600, y = -993.306, z = 29.750 },
+    --Cloakrooms = {
+      { x = -1051.903, y = -232.528, z = 44.020 },
     },
 
     Armories = {
-      { x = 451.699, y = -980.356, z = 29.689 },
+      { x = -1051.903, y = -232.528, z = 44.020 },
     },
 
     Vehicles = {
       {
-        Spawner    = { x = 454.69, y = -1017.4, z = 27.430 },
-        SpawnPoint = { x = 438.42, y = -1018.3, z = 27.757 },
+        Spawner    = { x = -1090.186, y = -264.948, z = 37.760 },
+        SpawnPoint = { x = -1099.452, y = -257.435, z = 37.683 },
         Heading    = 90.0,
       }
     },
 
-    Helicopters = {
+    --Helicopters = {
       {
         Spawner    = { x = 466.477, y = -982.819, z = 42.691 },
         SpawnPoint = { x = 450.04, y = -981.14, z = 42.691 },
@@ -66,12 +66,12 @@ Config.PoliceStations = {
     },
 
     VehicleDeleters = {
-      { x = 462.74, y = -1014.4, z = 27.065 },
-      { x = 462.40, y = -1019.7, z = 27.104 },
+      { x = -1084.437, y = -270.109, z = 37.649 },
+      --{ x = 462.40, y = -1019.7, z = 27.104 },
     },
 
     BossActions = {
-      { x = 448.417, y = -973.208, z = 29.689 }
+      { x = -1056.903, y = -233.188, z = 44.021 }
     },
 
   },
