@@ -826,9 +826,9 @@ function OpenPoliceActionsMenu()
               {label = _U('drag'),      value = 'drag'},
               {label = _U('put_in_vehicle'),  value = 'put_in_vehicle'},
               {label = _U('out_the_vehicle'), value = 'out_the_vehicle'},
-              {label = _U('fine'),            value = 'fine'},
+              --{label = _U('fine'),            value = 'fine'},
 			  --{label = _U('license_check'),   value = 'license_see'},
-			  {label = _U('jail'),			  value = 'jail'}
+			  --{label = _U('jail'),			  value = 'jail'}
             },
           },
           function(data2, menu2)
@@ -883,7 +883,7 @@ function OpenPoliceActionsMenu()
 
       end
 
-      if data.current.value == 'vehicle_interaction' then
+      --if data.current.value == 'vehicle_interaction' then
 
         ESX.UI.Menu.Open(
           'default', GetCurrentResourceName(), 'vehicle_interaction',
@@ -963,9 +963,9 @@ function OpenPoliceActionsMenu()
             elements = {
               {label = _U('cone'),     value = 'prop_roadcone02a'},
               {label = _U('barrier'), value = 'prop_barrier_work06a'},
-              {label = _U('spikestrips'),    value = 'p_ld_stinger_s'},
-              {label = _U('box'),   value = 'prop_boxpile_07d'},
-              {label = _U('cash'),   value = 'hei_prop_cash_crate_half_full'}
+             -- {label = _U('spikestrips'),    value = 'p_ld_stinger_s'},
+              --{label = _U('box'),   value = 'prop_boxpile_07d'},
+             -- {label = _U('cash'),   value = 'hei_prop_cash_crate_half_full'}
             },
           },
           function(data2, menu2)
@@ -1274,7 +1274,7 @@ end
 
 function OpenFineCategoryMenu(player, category)
 
-  ESX.TriggerServerCallback('esx_policejob:getFineList', function(fines)
+  ESX.TriggerServerCallback('esx_vaktjob:getFineList', function(fines)
 
     local elements = {}
 
@@ -1302,7 +1302,7 @@ function OpenFineCategoryMenu(player, category)
         menu.close()
 
         if Config.EnablePlayerManagement then
-          TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_police', _U('fine_total') .. label, amount)
+          TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), 'society_vaktjob', _U('fine_total') .. label, amount)
         else
           TriggerServerEvent('esx_billing:sendBill', GetPlayerServerId(player), '', _U('fine_total') .. label, amount)
         end
@@ -1323,7 +1323,7 @@ end
 
 function OpenVehicleInfosMenu(vehicleData)
 
-  ESX.TriggerServerCallback('esx_policejob:getVehicleInfos', function(infos)
+  ESX.TriggerServerCallback('esx_vaktjob:getVehicleInfos', function(infos)
 
     local elements = {}
 
@@ -1354,7 +1354,7 @@ end
 
 function OpenGetWeaponMenu()
 
-  ESX.TriggerServerCallback('esx_policejob:getArmoryWeapons', function(weapons)
+  ESX.TriggerServerCallback('esx_vaktjob:getArmoryWeapons', function(weapons)
 
     local elements = {}
 
@@ -1375,7 +1375,7 @@ function OpenGetWeaponMenu()
 
         menu.close()
 
-        ESX.TriggerServerCallback('esx_policejob:removeArmoryWeapon', function()
+        ESX.TriggerServerCallback('esx_vaktjob:removeArmoryWeapon', function()
           OpenGetWeaponMenu()
         end, data.current.value)
 
@@ -1417,7 +1417,7 @@ function OpenPutWeaponMenu()
 
       menu.close()
 
-      ESX.TriggerServerCallback('esx_policejob:addArmoryWeapon', function()
+      ESX.TriggerServerCallback('esx_vaktjob:addArmoryWeapon', function()
         OpenPutWeaponMenu()
       end, data.current.value)
 
@@ -1431,7 +1431,7 @@ end
 
 function OpenBuyWeaponsMenu(station)
 
-  ESX.TriggerServerCallback('esx_policejob:getArmoryWeapons', function(weapons)
+  ESX.TriggerServerCallback('esx_vaktjob:getArmoryWeapons', function(weapons)
 
     local elements = {}
 
@@ -1460,10 +1460,10 @@ function OpenBuyWeaponsMenu(station)
       },
       function(data, menu)
 
-        ESX.TriggerServerCallback('esx_policejob:buy', function(hasEnoughMoney)
+        ESX.TriggerServerCallback('esx_vaktjob:buy', function(hasEnoughMoney)
 
           if hasEnoughMoney then
-            ESX.TriggerServerCallback('esx_policejob:addArmoryWeapon', function()
+            ESX.TriggerServerCallback('esx_vaktjob:addArmoryWeapon', function()
               OpenBuyWeaponsMenu(station)
             end, data.current.value)
           else
@@ -1484,7 +1484,7 @@ end
 
 function OpenGetStocksMenu()
 
-  ESX.TriggerServerCallback('esx_policejob:getStockItems', function(items)
+  ESX.TriggerServerCallback('esx_vaktejob:getStockItems', function(items)
 
     --print(json.encode(items))
 
@@ -1497,7 +1497,7 @@ function OpenGetStocksMenu()
     ESX.UI.Menu.Open(
       'default', GetCurrentResourceName(), 'stocks_menu',
       {
-        title    = _U('police_stock'),
+        title    = _U('vakt_stock'),
         elements = elements
       },
       function(data, menu)
@@ -1520,7 +1520,7 @@ function OpenGetStocksMenu()
               menu.close()
               OpenGetStocksMenu()
 
-              TriggerServerEvent('esx_policejob:getStockItem', itemName, count)
+              TriggerServerEvent('esx_vaktjob:getStockItem', itemName, count)
             end
 
           end,
@@ -1541,7 +1541,7 @@ end
 
 function OpenPutStocksMenu()
 
-  ESX.TriggerServerCallback('esx_policejob:getPlayerInventory', function(inventory)
+  ESX.TriggerServerCallback('esx_vaktjob:getPlayerInventory', function(inventory)
 
     local elements = {}
 
@@ -1581,7 +1581,7 @@ function OpenPutStocksMenu()
               menu.close()
               OpenPutStocksMenu()
 
-              TriggerServerEvent('esx_policejob:putStockItems', itemName, count)
+              TriggerServerEvent('esx_vaktjob:putStockItems', itemName, count)
             end
 
           end,
@@ -1610,7 +1610,7 @@ AddEventHandler('esx:setJob', function(job)
   PlayerData.job = job
 end)
 
-RegisterNetEvent('esx_phone:loaded')
+--RegisterNetEvent('esx_phone:loaded')
 AddEventHandler('esx_phone:loaded', function(phoneNumber, contacts)
 
   local specialContact = {
@@ -1623,7 +1623,7 @@ AddEventHandler('esx_phone:loaded', function(phoneNumber, contacts)
 
 end)
 
-AddEventHandler('esx_policejob:hasEnteredMarker', function(station, part, partNum)
+AddEventHandler('esx_vaktjob:hasEnteredMarker', function(station, part, partNum)
 
   if part == 'Cloakroom' then
     CurrentAction     = 'menu_cloakroom'
@@ -1689,16 +1689,16 @@ AddEventHandler('esx_policejob:hasEnteredMarker', function(station, part, partNu
 
 end)
 
-AddEventHandler('esx_policejob:hasExitedMarker', function(station, part, partNum)
+AddEventHandler('esx_vaktjob:hasExitedMarker', function(station, part, partNum)
   ESX.UI.Menu.CloseAll()
   CurrentAction = nil
 end)
 
-AddEventHandler('esx_policejob:hasEnteredEntityZone', function(entity)
+AddEventHandler('esx_vaktjob:hasEnteredEntityZone', function(entity)
 
   local playerPed = GetPlayerPed(-1)
 
-  if PlayerData.job ~= nil and PlayerData.job.name == 'police' and not IsPedInAnyVehicle(playerPed, false) then
+  if PlayerData.job ~= nil and PlayerData.job.name == 'vakt' and not IsPedInAnyVehicle(playerPed, false) then
     CurrentAction     = 'remove_entity'
     CurrentActionMsg  = _U('remove_object')
     CurrentActionData = {entity = entity}
@@ -1723,7 +1723,7 @@ AddEventHandler('esx_policejob:hasEnteredEntityZone', function(entity)
 
 end)
 
-AddEventHandler('esx_policejob:hasExitedEntityZone', function(entity)
+AddEventHandler('esx_vaktjob:hasExitedEntityZone', function(entity)
 
   if CurrentAction == 'remove_entity' then
     CurrentAction = nil
@@ -1731,8 +1731,8 @@ AddEventHandler('esx_policejob:hasExitedEntityZone', function(entity)
 
 end)
 
-RegisterNetEvent('esx_policejob:handcuff')
-AddEventHandler('esx_policejob:handcuff', function()
+RegisterNetEvent('esx_vaktjob:handcuff')
+AddEventHandler('esx_vaktjob:handcuff', function()
 
   IsHandcuffed    = not IsHandcuffed;
   local playerPed = GetPlayerPed(-1)
@@ -1764,8 +1764,8 @@ AddEventHandler('esx_policejob:handcuff', function()
   end)
 end)
 
-RegisterNetEvent('esx_policejob:drag')
-AddEventHandler('esx_policejob:drag', function(cop)
+RegisterNetEvent('esx_vaktjob:drag')
+AddEventHandler('esx_vaktjob:drag', function(cop)
   --TriggerServerEvent('esx:clientLog', 'starting dragging')
   IsDragged = not IsDragged
   CopPed = tonumber(cop)
@@ -1786,8 +1786,8 @@ Citizen.CreateThread(function()
   end
 end)
 
-RegisterNetEvent('esx_policejob:putInVehicle')
-AddEventHandler('esx_policejob:putInVehicle', function()
+RegisterNetEvent('esx_vaktjob:putInVehicle')
+AddEventHandler('esx_vaktjob:putInVehicle', function()
 
   local playerPed = GetPlayerPed(-1)
   local coords    = GetEntityCoords(playerPed)
@@ -1818,8 +1818,8 @@ AddEventHandler('esx_policejob:putInVehicle', function()
 
 end)
 
-RegisterNetEvent('esx_policejob:OutVehicle')
-AddEventHandler('esx_policejob:OutVehicle', function(t)
+RegisterNetEvent('esx_vaktjob:OutVehicle')
+AddEventHandler('esx_vaktjob:OutVehicle', function(t)
   local ped = GetPlayerPed(t)
   ClearPedTasksImmediately(ped)
   plyPos = GetEntityCoords(GetPlayerPed(-1),  true)
@@ -1868,7 +1868,7 @@ Citizen.CreateThread(function()
 
     Wait(0)
 
-    if PlayerData.job ~= nil and PlayerData.job.name == 'police' then
+    if PlayerData.job ~= nil and PlayerData.job.name == 'vakt' then
 
       local playerPed = GetPlayerPed(-1)
       local coords    = GetEntityCoords(playerPed)
@@ -1899,7 +1899,7 @@ Citizen.CreateThread(function()
           end
         end
 
-        if Config.EnablePlayerManagement and PlayerData.job ~= nil and PlayerData.job.name == 'police' and PlayerData.job.grade_name == 'boss' then
+        if Config.EnablePlayerManagement and PlayerData.job ~= nil and PlayerData.job.name == 'vakt' and PlayerData.job.grade_name == 'boss' then
 
           for i=1, #v.BossActions, 1 do
             if not v.BossActions[i].disabled and GetDistanceBetweenCoords(coords,  v.BossActions[i].x,  v.BossActions[i].y,  v.BossActions[i].z,  true) < Config.DrawDistance then
@@ -1923,7 +1923,7 @@ Citizen.CreateThread(function()
 
     Wait(0)
 
-    if PlayerData.job ~= nil and PlayerData.job.name == 'police' then
+    if PlayerData.job ~= nil and PlayerData.job.name == 'vakt' then
 
       local playerPed      = GetPlayerPed(-1)
       local coords         = GetEntityCoords(playerPed)
@@ -1997,7 +1997,7 @@ Citizen.CreateThread(function()
           end
         end
 
-        if Config.EnablePlayerManagement and PlayerData.job ~= nil and PlayerData.job.name == 'police' and PlayerData.job.grade_name == 'boss' then
+        if Config.EnablePlayerManagement and PlayerData.job ~= nil and PlayerData.job.name == 'vakt' and PlayerData.job.grade_name == 'boss' then
 
           for i=1, #v.BossActions, 1 do
             if GetDistanceBetweenCoords(coords,  v.BossActions[i].x,  v.BossActions[i].y,  v.BossActions[i].z,  true) < Config.MarkerSize.x then
@@ -2020,7 +2020,7 @@ Citizen.CreateThread(function()
           (LastStation ~= nil and LastPart ~= nil and LastPartNum ~= nil) and
           (LastStation ~= currentStation or LastPart ~= currentPart or LastPartNum ~= currentPartNum)
         then
-          TriggerEvent('esx_policejob:hasExitedMarker', LastStation, LastPart, LastPartNum)
+          TriggerEvent('esx_vaktjob:hasExitedMarker', LastStation, LastPart, LastPartNum)
           hasExited = true
         end
 
@@ -2029,14 +2029,14 @@ Citizen.CreateThread(function()
         LastPart                = currentPart
         LastPartNum             = currentPartNum
 
-        TriggerEvent('esx_policejob:hasEnteredMarker', currentStation, currentPart, currentPartNum)
+        TriggerEvent('esx_vaktjob:hasEnteredMarker', currentStation, currentPart, currentPartNum)
       end
 
       if not hasExited and not isInMarker and HasAlreadyEnteredMarker then
 
         HasAlreadyEnteredMarker = false
 
-        TriggerEvent('esx_policejob:hasExitedMarker', LastStation, LastPart, LastPartNum)
+        TriggerEvent('esx_vaktjob:hasExitedMarker', LastStation, LastPart, LastPartNum)
       end
 
     end
@@ -2086,14 +2086,14 @@ Citizen.CreateThread(function()
     if closestDistance ~= -1 and closestDistance <= 3.0 then
 
       if LastEntity ~= closestEntity then
-        TriggerEvent('esx_policejob:hasEnteredEntityZone', closestEntity)
+        TriggerEvent('esx_vaktjob:hasEnteredEntityZone', closestEntity)
         LastEntity = closestEntity
       end
 
     else
 
       if LastEntity ~= nil then
-        TriggerEvent('esx_policejob:hasExitedEntityZone', LastEntity)
+        TriggerEvent('esx_vaktjob:hasExitedEntityZone', LastEntity)
         LastEntity = nil
       end
 
@@ -2114,7 +2114,7 @@ Citizen.CreateThread(function()
       AddTextComponentString(CurrentActionMsg)
       DisplayHelpTextFromStringLabel(0, 0, 1, -1)
 
-      if IsControlPressed(0,  Keys['E']) and PlayerData.job ~= nil and PlayerData.job.name == 'police' and (GetGameTimer() - GUI.Time) > 150 then
+      if IsControlPressed(0,  Keys['E']) and PlayerData.job ~= nil and PlayerData.job.name == 'vaky' and (GetGameTimer() - GUI.Time) > 150 then
 
         if CurrentAction == 'menu_cloakroom' then
           OpenCloakroomMenu()
@@ -2133,7 +2133,7 @@ Citizen.CreateThread(function()
           if Config.EnableSocietyOwnedVehicles then
 
             local vehicleProps = ESX.Game.GetVehicleProperties(CurrentActionData.vehicle)
-            TriggerServerEvent('esx_society:putVehicleInGarage', 'police', vehicleProps)
+            TriggerServerEvent('esx_society:putVehicleInGarage', 'vakt', vehicleProps)
 
           else
 
@@ -2145,7 +2145,7 @@ Citizen.CreateThread(function()
               GetEntityModel(vehicle) == GetHashKey('policeb') or
               GetEntityModel(vehicle) == GetHashKey('policet')
             then
-              TriggerServerEvent('esx_service:disableService', 'police')
+              TriggerServerEvent('esx_service:disableService', 'vakt')
             end
 
           end
@@ -2157,7 +2157,7 @@ Citizen.CreateThread(function()
 
           ESX.UI.Menu.CloseAll()
 
-          TriggerEvent('esx_society:openBossMenu', 'police', function(data, menu)
+          TriggerEvent('esx_society:openBossMenu', 'vakt', function(data, menu)
 
             menu.close()
 
@@ -2180,7 +2180,7 @@ Citizen.CreateThread(function()
 
     end
 
-    if IsControlPressed(0,  Keys['F6']) and PlayerData.job ~= nil and PlayerData.job.name == 'police' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') and (GetGameTimer() - GUI.Time) > 150 then
+    if IsControlPressed(0,  Keys['F6']) and PlayerData.job ~= nil and PlayerData.job.name == 'vakt' and not ESX.UI.Menu.IsOpen('default', GetCurrentResourceName(), 'police_actions') and (GetGameTimer() - GUI.Time) > 150 then
       OpenPoliceActionsMenu()
       GUI.Time = GetGameTimer()
     end
