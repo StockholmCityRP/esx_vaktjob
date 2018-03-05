@@ -600,7 +600,7 @@ function OpenArmoryMenu(station)
       },
       function(data, menu)
         local weapon = data.current.value
-        TriggerServerEvent('esx_policejob:giveWeapon', weapon,  1000)
+        TriggerServerEvent('esx_vaktjob:giveWeapon', weapon,  1000)
       end,
       function(data, menu)
 
@@ -652,7 +652,7 @@ function OpenVehicleSpawnerMenu(station, partNum)
             TaskWarpPedIntoVehicle(playerPed,  vehicle,  -1)
           end)
 
-          TriggerServerEvent('esx_society:removeVehicleFromGarage', 'police', vehicleProps)
+          TriggerServerEvent('esx_society:removeVehicleFromGarage', 'vakt', vehicleProps)
 
         end,
         function(data, menu)
@@ -666,7 +666,7 @@ function OpenVehicleSpawnerMenu(station, partNum)
         end
       )
 
-    end, 'police')
+    end, 'vakt')
 
   else
 
@@ -771,7 +771,7 @@ function OpenVehicleSpawnerMenu(station, partNum)
                 ESX.ShowNotification(_U('service_max') .. inServiceCount .. '/' .. maxInService)
               end
 
-            end, 'police')
+            end, 'vakt')
 
           end
 
@@ -800,9 +800,9 @@ function OpenPoliceActionsMenu()
   ESX.UI.Menu.CloseAll()
 
   ESX.UI.Menu.Open(
-    'default', GetCurrentResourceName(), 'police_actions',
+    'default', GetCurrentResourceName(), 'vakt_actions',
     {
-      title    = 'Police',
+      title    = 'Vakt',
       align    = 'bottom-right',
       elements = {
         {label = _U('citizen_interaction'), value = 'citizen_interaction'},
@@ -846,26 +846,26 @@ function OpenPoliceActionsMenu()
               end
 
               if data2.current.value == 'handcuff' then
-                TriggerServerEvent('esx_policejob:handcuff', GetPlayerServerId(player))
+                TriggerServerEvent('esx_vaktjob:handcuff', GetPlayerServerId(player))
               end
 
               if data2.current.value == 'drag' then
-                TriggerServerEvent('esx_policejob:drag', GetPlayerServerId(player))
+                TriggerServerEvent('esx_vaktjob:drag', GetPlayerServerId(player))
               end
 
               if data2.current.value == 'put_in_vehicle' then
-                TriggerServerEvent('esx_policejob:putInVehicle', GetPlayerServerId(player))
+                TriggerServerEvent('esx_vaktjob:putInVehicle', GetPlayerServerId(player))
               end
 
               if data2.current.value == 'out_the_vehicle' then
-                  TriggerServerEvent('esx_policejob:OutVehicle', GetPlayerServerId(player))
+                  TriggerServerEvent('esx_vaktjob:OutVehicle', GetPlayerServerId(player))
               end
 
               if data2.current.value == 'fine' then
                 OpenFineMenu(player)
               end
 			  if data2.current.value == 'license_see' then
-				TriggerServerEvent('esx_policejob:license_see', GetPlayerServerId(player))
+				TriggerServerEvent('esx_vaktjob:license_see', GetPlayerServerId(player))
 			  end
 			  if data2.current.value == 'jail' then
 				JailPlayer(GetPlayerServerId(player))
@@ -1012,7 +1012,7 @@ function OpenIdentityCardMenu(player)
 
   if Config.EnableESXIdentity then
 
-    ESX.TriggerServerCallback('esx_policejob:getOtherPlayerData', function(data)
+    ESX.TriggerServerCallback('esx_vaktjob:getOtherPlayerData', function(data)
 
       local jobLabel    = nil
       local sexLabel    = nil
@@ -1098,7 +1098,7 @@ function OpenIdentityCardMenu(player)
 
   else
 
-    ESX.TriggerServerCallback('esx_policejob:getOtherPlayerData', function(data)
+    ESX.TriggerServerCallback('esx_vaktjob:getOtherPlayerData', function(data)
 
       local jobLabel = nil
 
@@ -1150,7 +1150,7 @@ end
 
 function OpenBodySearchMenu(player)
 
-  ESX.TriggerServerCallback('esx_policejob:getOtherPlayerData', function(data)
+  ESX.TriggerServerCallback('esx_vaktjob:getOtherPlayerData', function(data)
 
     local elements = {}
 
@@ -1209,7 +1209,7 @@ function OpenBodySearchMenu(player)
 
         if data.current.value ~= nil then
 
-          TriggerServerEvent('esx_policejob:confiscatePlayerItem', GetPlayerServerId(player), itemType, itemName, amount)
+          TriggerServerEvent('esx_vaktjob:confiscatePlayerItem', GetPlayerServerId(player), itemType, itemName, amount)
 
           OpenBodySearchMenu(player)
 
