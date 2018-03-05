@@ -33,7 +33,7 @@ Config.PoliceStations = {
     },
 
     AuthorizedVehicles = {
-      { name = 'police',  label = 'Véhicule de patrouille 1' },
+      { name = 'Burrito3',  label = 'Vaktbil' },
       --{ name = 'police2', label = 'Volvo V90 Polis' },
       --{ name = 'police3', label = 'Véhicule de patrouille 3' },
       --{ name = 'police4', label = 'Véhicule civil' },
