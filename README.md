@@ -1,6 +1,8 @@
 # fxserver-esx_vaktjob
 FXServer ESX Vakt Job
 
+Modified bu Kasper Ek from the SCRP team.
+
 [REQUIREMENTS]
 
 * Auto mode
